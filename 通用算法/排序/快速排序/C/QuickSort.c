@@ -16,14 +16,15 @@ int baseIndex(int start,int end){
 	return rand()%(end-start+1)+start;
 }
 
+/*
 int partition(int array[],int start,int end){
 	int base = baseIndex(start,end); 
 	//printf("base=%d\n",base);
 	swap(array,base,end);
-	int flagNum = array[end];
-	int left_bound=start-1;
+	int flag_num = array[end];
+	int left_bound=start-1;//left_bound始终是小于基准的那一半数组的边界+1的位置
 	for(int i=start;i<end;++i){
-		if(array[i]<flagNum){
+		if(array[i]<flag_num){
 			++left_bound;
 			if(i!=left_bound)swap(array,i,left_bound);
 		}
@@ -31,6 +32,17 @@ int partition(int array[],int start,int end){
 	++left_bound;
 	swap(array,end,left_bound);
 	return left_bound;
+}*/
+
+int partition(int array[],int start,int end){
+	int base = baseIndex(start,end); 
+	swap(array,base,start);
+	int flag_num = array[start];
+	int i = start+1,j=end;
+	while(i<j){
+		while()
+	}
+	
 }
 
 void m_qsort(int array[],int start,int end){
