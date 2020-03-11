@@ -38,11 +38,17 @@ int partition(int array[],int start,int end){
 	int base = baseIndex(start,end); 
 	swap(array,base,start);
 	int flag_num = array[start];
-	int i = start+1,j=end;
+	int i = start,j=end;
 	while(i<j){
-		while()
+		while(array[j]>flag_num&&j>i)--j;
+		if(j==i)break;
+		else swap(array,i++,j);
+		while(array[i]<=flag_num&&i<j)++i;
+		if(i==j)break;
+		else swap(array,i,j--);
 	}
-	
+	swap(array,j,start);
+	return j;
 }
 
 void m_qsort(int array[],int start,int end){
