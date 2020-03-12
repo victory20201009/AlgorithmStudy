@@ -47,7 +47,7 @@ int partition(int array[],int start,int end){
 		if(i==j)break;
 		else swap(array,i,j--);
 	}
-	swap(array,j,start);
+	array[j]=flag_num;
 	return j;
 }
 
@@ -86,10 +86,10 @@ int main(){
 	runQsort(arr,0,9);
 	
 	int arr1[] = {1};
-	runQsort(arr,0,0);
+	runQsort(arr1,0,0);
 	
 	int arr2[] = {1,3};
-	runQsort(arr,0,1);
+	runQsort(arr2,0,1);
 	
 	int arr3[10] = {1,3,5,7,9,2,4,6,8,10}; 
 	runQsort(arr3,0,7);
