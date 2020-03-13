@@ -17,7 +17,7 @@ int baseIndex(int start,int end){
 }
 
 /*
-int partition(int array[],int start,int end){
+int partition1(int array[],int start,int end){
 	int base = baseIndex(start,end); 
 	//printf("base=%d\n",base);
 	swap(array,base,end);
@@ -34,7 +34,8 @@ int partition(int array[],int start,int end){
 	return left_bound;
 }*/
 
-int partition(int array[],int start,int end){
+//数据结构书上讲的方法 甩锅法
+int partition2(int array[],int start,int end){
 	int base = baseIndex(start,end); 
 	swap(array,base,start);
 	int flag_num = array[start];
@@ -42,10 +43,26 @@ int partition(int array[],int start,int end){
 	while(i<j){
 		while(array[j]>flag_num&&j>i)--j;
 		if(j==i)break;
-		else swap(array,i++,j);
+		else array[i++]=array[j];//一边遇到不符合条件的，甩给另一边
 		while(array[i]<=flag_num&&i<j)++i;
 		if(i==j)break;
-		else swap(array,i,j--);
+		else array[j--]=array[i];
+	}
+	array[j]=flag_num;
+	return j;
+}
+
+//优化partition2函数
+int partition3(int array[],int start,int end){
+	int base = baseIndex(start,end); 
+	swap(array,base,start);
+	int flag_num = array[start];
+	int i = start,j=end;
+	while(i<j){
+		while(j>i&&array[j]>flag_num)--j;
+		array[i]=array[j];//不让i+1，让判断是否等于的代码合入while
+		while(i<j&&array[i]<=flag_num)++i;
+		array[j]=array[i];
 	}
 	array[j]=flag_num;
 	return j;
@@ -53,7 +70,7 @@ int partition(int array[],int start,int end){
 
 void m_qsort(int array[],int start,int end){
 	if(start==end)return;
-	int spliter = partition(array,start,end);
+	int spliter = partition3(array,start,end);
 	if(spliter>start)m_qsort(array,start,spliter-1);
 	if(spliter<end)m_qsort(array,spliter+1,end);
 }
