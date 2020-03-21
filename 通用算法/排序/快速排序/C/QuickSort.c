@@ -16,13 +16,13 @@ int baseIndex(int start, int end) {
 	return rand() % (end - start + 1) + start;
 }
 
-
+//区间法
 int partition1(int array[],int start,int end){
 	int base = baseIndex(start,end);
 	//printf("base=%d\n",base);
 	swap(array,base,end);
 	int flag_num = array[end];
-	int left_bound=start-1;//left_bound始终是小于基准的那一半数组的边界+1的位置
+	int left_bound=start-1;//left_bound始终是小于基准的那一半数组的最后一个元素的位置
 	for(int i=start;i<end;++i){
 		if(array[i]<flag_num){
 			++left_bound;
@@ -82,6 +82,10 @@ int partition4(int array[], int start, int end) {
 	swap(array, start, right);//交换基准
 	return right;
 }
+
+/*
+以上的partition方法
+*/
 
 void m_qsort(int array[], int start, int end) {
 	if (start == end)return;
