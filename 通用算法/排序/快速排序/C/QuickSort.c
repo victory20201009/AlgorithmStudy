@@ -83,13 +83,27 @@ int partition4(int array[], int start, int end) {
 	return right;
 }
 
+int partition_two_way(int* arr,int start,int end){
+    int rand_index = baseIndex(start,end);
+    swap(arr,start,rand_index);
+    int base = arr[start],i=start+1,j=end;
+    while(i<=j){
+        while(i<=j&&arr[j]>base)--j;
+        while(i<=j&&arr[i]<base)++i;
+        if(i<=j)swap(arr,i++,j--);
+		
+    }
+    swap(arr,start,j);
+    return j;
+}
+
 /*
 以上的partition方法
 */
 
 void m_qsort(int array[], int start, int end) {
 	if (start == end)return;
-	int spliter = partition4(array, start, end);
+	int spliter = partition_two_way(array, start, end);
 	if (spliter > start)m_qsort(array, start, spliter - 1);
 	if (spliter < end)m_qsort(array, spliter + 1, end);
 }
